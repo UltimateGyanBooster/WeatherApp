@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>DOC</title>
+</head>
+<body>
+    <div class="mainbox">
+        <div class="heading"    >
+            WEATHER FINDER
+        </div>
+
+        <div>
+            <input type="text" id="input" placeholder="Enter city name">
+        </div>
+
+        <div>
+            <button onclick="getData()">show</button>
+        </div>
+
+    <div class="output" id="output">
+        
+
+    </div>
+
+
+    </div>
+
+   
+    <script>
+
+        function getData()
+        {
+            var input=document.getElementById("input").value;
+                fetch('https://api.openweathermap.org/data/2.5/weather?q='+input+'&units=metric&appid=64b6df2ab6e7a7411bf7b8141b7be6b6')
+        .then((response) => {
+            return response.json();
+        })
+        .then((myJson) => {
+            console.log(myJson);
+            console.log(myJson.main.temp);
+            document.getElementById("output").innerHTML=myJson.main.temp+"C";
+        }).catch(function(){console.log("error"); document.getElementById("output").innerHTML="City name is not valid"});
+        
+
+       
+        }
+
+    </script>
+</body>
+</html>
